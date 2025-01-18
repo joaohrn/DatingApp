@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark mb-3">
 	<div class="container">
 		<a class="navbar-brand" routerLink="/">Dating App</a>
 
@@ -29,6 +29,14 @@
 				>
 			</li>
 			}
+			<li class="nav-item">
+				<a
+					routerLink="/errors"
+					routerLinkActive="active"
+					class="nav-link"
+					>Errors</a
+				>
+			</li>
 		</ul>
 		@if(accountService.currentUser()){
 		<div class="dropdown" dropdown>
