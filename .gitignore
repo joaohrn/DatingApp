@@ -302,3 +302,4 @@ __pycache__/
 
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore,angular
 backend/Api/appsettings.Development.json
+backend/Api/appsettings.json
