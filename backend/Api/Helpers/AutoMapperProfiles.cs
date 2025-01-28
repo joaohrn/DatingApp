@@ -3,6 +3,7 @@ using Api.DTOs;
 using Api.Entities;
 using Api.Extensions;
 using AutoMapper;
+using AutoMapper.Execution;
 
 namespace Api.Helpers;
 
@@ -15,5 +16,6 @@ public class AutoMapperProfiles : Profile
             .ForMember(d => d.PhotoUrl, o => o.MapFrom(s => s.Photos.FirstOrDefault(x => x.IsMain)!.Url))
             .ReverseMap();
         CreateMap<Photo, PhotoDto>().ReverseMap();
+        CreateMap<MemberUpdateDto, AppUser>().ReverseMap();
     }
 }
