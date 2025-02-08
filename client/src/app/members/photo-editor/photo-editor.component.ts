@@ -42,10 +42,23 @@ export class PhotoEditorComponent implements OnInit {
 			file.withCredentials = false;
 		};
 		this.uploader.onSuccessItem = (item, response, status, headers) => {
-			const photo = JSON.parse(response);
+			const photo: Photo = JSON.parse(response);
 			const memberUpload = { ...this.member() };
 			memberUpload.photos.push(photo);
 			this.memberChange.emit(memberUpload);
+			if (photo.isMain) {
+				const user = this.accountService.currentUser();
+				if (user) {
+					user.photoUrl = photo.url;
+					this.accountService.setCurrentUser(user);
+				}
+				memberUpload.photoUrl = photo.url;
+				memberUpload.photos.forEach((p) => {
+					if (p.isMain) p.isMain = false;
+					if (p.id === photo.id) p.isMain = true;
+				});
+				this.memberChange.emit(memberUpload);
+			}
 		};
 	}
 	setMainPhoto(photo: Photo) {
