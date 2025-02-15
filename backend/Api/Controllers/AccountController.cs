@@ -52,6 +52,7 @@ public class AccountController(DataContext context, ITokenService tokenService, 
             PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
         });
     }
+    [NonAction]
     public async Task<bool> UserExists(string username){
         return await context.Users.AnyAsync(x => x.UserName.ToLower() == username.ToLower());
     }
